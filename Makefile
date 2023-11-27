@@ -11,6 +11,13 @@ export BUILD_HARNESS_OS ?= $(OS)
 export BUILD_HARNESS_ARCH ?= $(shell uname -m | sed 's/x86_64/amd64/g')
 export SELF ?= $(MAKE)
 export DOCKER_BUILD_FLAGS ?=
+export SHELL = /bin/bash
+export PWD = $(shell pwd)
+export BUILD_HARNESS_ORG ?= oneconcern
+export BUILD_HARNESS_PROJECT ?= harness
+export BUILD_HARNESS_DOCKER_IMAGE ?= $(BUILD_HARNESS_ORG)/$(BUILD_HARNESS_PROJECT)
+export BUILD_HARNESS_BRANCH ?= main
+export BUILD_HARNESS_CLONE_URL ?= https://github.com/$(BUILD_HARNESS_ORG)/$(BUILD_HARNESS_PROJECT).git
 
 # Forces auto-init off to avoid invoking the macro on recursive $(MAKE)
 export BUILD_HARNESS_AUTO_INIT := false
@@ -23,12 +30,11 @@ ifeq ($(CURDIR),$(realpath $(BUILD_HARNESS_PATH)))
 # List of targets the `readme` target should call before generating the readme
 export DEFAULT_HELP_TARGET = help/all
 
-# builder/build is defined in templates/Makefile.build-harness
-build: builder/build
-
 endif
 
 # Import Makefiles into current context
 include $(BUILD_HARNESS_PATH)/Makefile.*
 include $(BUILD_HARNESS_PATH)/modules/*/bootstrap.Makefile*
 include $(BUILD_HARNESS_PATH)/modules/*/Makefile*
+
+endif
