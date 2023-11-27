@@ -10,12 +10,12 @@
 ifeq ($(BUILD_HARNESS_TEMPLATES_MAKEFILE_GUARD),)
 BUILD_HARNESS_TEMPLATES_MAKEFILE_GUARD := included
 
-export SHELL = /bin/bash
+export SHELL ?= /bin/bash
 export PWD = $(shell pwd)
-export BUILD_HARNESS_ORG ?= cloudposse
-export BUILD_HARNESS_PROJECT ?= build-harness
+export BUILD_HARNESS_ORG ?= oneconcern
+export BUILD_HARNESS_PROJECT ?= harness
 export BUILD_HARNESS_DOCKER_IMAGE ?= $(BUILD_HARNESS_ORG)/$(BUILD_HARNESS_PROJECT)
-export BUILD_HARNESS_BRANCH ?= master
+export BUILD_HARNESS_BRANCH ?= main
 export BUILD_HARNESS_CLONE_URL ?= https://github.com/$(BUILD_HARNESS_ORG)/$(BUILD_HARNESS_PROJECT).git
 
 # Resolves BUILD_HARNESS_PATH to BUILD_HARNESS_PATH_LOCAL when BUILD_HARNESS_PATH does not exist
