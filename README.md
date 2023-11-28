@@ -45,7 +45,7 @@ The master set of makefiles exposes targets for specific tools, and it is up to 
 
 ## Recommended Targets
 
-While each repo may have its own specific targets, there are a few common targets that are recommended for all repos:
+While each repo may have its own specific targets, there are a few common targets that are recommended for all repos. Note that these targets are specifically NOT included in the harness, as they are intended to be customized for each repo.
 
 - All: build and deploy the entire program from scratch 
 - Install: install any needed tools/packages for working in the repo
@@ -61,7 +61,6 @@ While each repo may have its own specific targets, there are a few common target
 - Build: build all application assets
 - Deps: install all project dependencies (i.e. from Poetry)
     - Dev: install all project dependencies AND dev dependencies 
-- Help: generate well formatted output for targets (this is the default). Note that the harness has a help target.
 
 ## CI/CD
 
