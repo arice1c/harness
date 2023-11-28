@@ -15,7 +15,7 @@ Goal: encapsulate logic around common software tasks using `make` in a way that 
 At the top of your Makefile, include the harness:
 
 ```makefile
--include $(shell curl -sSL -o .build-harness "https://cloudposse.tools/build-harness"; echo .build-harness)
+-include $(shell curl -sSL -o .build-harness "https://raw.githubusercontent.com/oneconcern/harness/main/Makefile.harness"; echo .build-harness)
 ```
 
 ## Design
