@@ -18,6 +18,22 @@ At the top of your Makefile, include the harness:
 -include $(shell curl -sSL -o .build-harness "https://raw.githubusercontent.com/oneconcern/harness/main/Makefile.harness"; echo .build-harness)
 ```
 
+Add the initialized build harness to your `.gitignore`:
+
+```gitignore
+.build-harness
+build-harness
+harness
+```
+
+### Initialization
+
+The `Makefile.harness` file only includes a basic set of targets to facilitate downloading/installing the full harness. To leverage the full set of targets, you may either automatically initialize the harness or manually initialize it and include the targets you want.
+
+**Automatic Initialization**: To automatically initialize the harness, export the env variable `BUILD_HARNESS_AUTO_INIT=true` before running any targets in your `Makefile`. This will automatically download and install the full harness, and make all of its targets available to your Makefile.
+
+**Manual Initialization**: you can manually initialize the harness by running `make init` in your project directory. This will download and install the full harness to a top-level `harness` directory, after which you can choose which targets to include in your Makefile.
+
 ## Design
 
 - Namespace targets with / as delimiter. E.g. `docker/build:`
@@ -25,30 +41,17 @@ At the top of your Makefile, include the harness:
 - Keep targets small. For more complex tasks, write shell scripts and call those from targets
 - Separate repo, releases, and versioning for harness. Download/include it in each project’s main Makefile
 
-## Responsibilities
+The master set of makefiles exposes targets for specific tools, and it is up to the Makefile in each repo to compose the applicable targets appropriately.
 
-The master set of makefiles exposes targets for specific tools, and it is up to the master Makefile in each repo to compose the applicable targets appropriately.
+## Recommended Targets
 
-### Lint
-
-### Test
-
-### Build
-
-### Release
-
-### Install
-
-## Standard Targets
+While each repo may have its own specific targets, there are a few common targets that are recommended for all repos:
 
 - All: build and deploy the entire program from scratch 
 - Install: install any needed tools/packages for working in the repo
 - Uninstall: delete this application
 - Clean: remove all build artifacts (aka dist/ directory, built Docker images, etc…)
 - Check: run any tests on a built artifact before ‘installation’. Linting, formatting, unit tests
-
-## Custom Targets
-
 - Test: run all unit tests
     - Integration: only integration tests
     - Performance: only performance tests
@@ -58,7 +61,7 @@ The master set of makefiles exposes targets for specific tools, and it is up to 
 - Build: build all application assets
 - Deps: install all project dependencies (i.e. from Poetry)
     - Dev: install all project dependencies AND dev dependencies 
-- Help: generate well formatted output for targets (this is the default)
+- Help: generate well formatted output for targets (this is the default). Note that the harness has a help target.
 
 ## CI/CD
 

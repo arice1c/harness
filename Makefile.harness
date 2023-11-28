@@ -60,14 +60,12 @@ endef
 
 -include $(if $(findstring true,$(BUILD_HARNESS_AUTO_INIT)),$(shell $(harness_auto_init) >&2)) $(BUILD_HARNESS_PATH)/Makefile
 
-.PHONY : init
 ## Init build-harness
-init::
+harness/init::
 	@ $(harness_install)
 
-.PHONY : clean
 ## Clean build-harness
-clean::
+harness/clean::
 	@if [ -d "$(BUILD_HARNESS_PATH)" ]; then \
 		if [ -d build-harness ] && [ "$(BUILD_HARNESS_PATH)" -ef build-harness ]; then \
 			echo rm -rf build-harness; \
