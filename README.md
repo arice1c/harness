@@ -49,9 +49,9 @@ While each repo may have its own specific targets, there are a few common target
 
 - All: build and deploy the entire program from scratch 
 - Install: install any needed tools/packages for working in the repo
-- Uninstall: delete this application
+- Uninstall: completely remove this application
 - Clean: remove all build artifacts (aka dist/ directory, built Docker images, etc…)
-- Check: run any tests on a built artifact before ‘installation’. Linting, formatting, unit tests
+- Check: run all checks on a built artifact before ‘installation’. Linting, formatting, unit tests, etc...
 - Test: run all unit tests
     - Integration: only integration tests
     - Performance: only performance tests
